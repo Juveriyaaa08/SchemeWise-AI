@@ -1,0 +1,121 @@
+{
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "schemewise-ai",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        -192
+      ],
+      "id": "f965135d-c990-4f1e-acd9-f80fd7236a5b",
+      "name": "Webhook",
+      "webhookId": "17da5bb6-e7ac-4084-858f-a71459262740"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Name: {{$json.body.userProfile.name}}\nAge: {{$json.body.userProfile.age}}\nGender: {{$json.body.userProfile.gender}}\nState: {{$json.body.userProfile.state}}\nOccupation: {{$json.body.userProfile.occupation}}\nIncome: {{$json.body.userProfile.income}}\nEducation: {{$json.body.userProfile.education}}\nCategory: {{$json.body.userProfile.category}}\nDisability: {{$json.body.userProfile.disability}}\nReturn ONLY plain text.\nDo not return JSON.\nDo not return markdown.\n\nSuggest the most suitable Indian Government Schemes.",
+        "options": {
+          "systemMessage": "You are SchemeWise AI, an expert Indian Government Scheme Eligibility Assistant.\n\nYour task is to analyze the user's details and recommend ONLY the government schemes for which they are likely eligible.\n\nFor each scheme provide:\n\n• Scheme Name\n• Why the user is eligible\n• Key Benefits\n• How to Apply\n• Official Website (if available)\n\nRules:\n- Use simple English.\n- Do not return JSON.\n- Do not return numbers only.\n- Return a properly formatted list.\n- If no suitable scheme exists, say \"No suitable government scheme found.\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1088,
+        -192
+      ],
+      "id": "34ed2d58-2917-4a9a-a975-9bde4649cf94",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1440,
+        -192
+      ],
+      "id": "0b3273b4-373a-4e98-a62c-e6dbfdc2dc06",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-20b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        -32
+      ],
+      "id": "01ad9676-ff1b-4878-9fec-bdaa96f587dd",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "Py7PMG7MSdvHF3H8",
+          "name": "Groq account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "b59d93cf-3298-49ed-8027-ef6a5e984c69",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "06bd214dd33fe207a71981ddbb6490b3bb5b448cf313f44e1a1d8f3cadb09fd3"
+  },
+  "id": "GukYkbgOsC8b4z94",
+  "tags": []
+}

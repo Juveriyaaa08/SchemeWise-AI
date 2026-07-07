@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | SchemeWise AI</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/Style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-primary shadow">
+
+        <div class="container">
+
+            <h3 class="text-white mb-0">
+
+                <i class="fa-solid fa-robot"></i>
+
+                SchemeWise AI
+
+            </h3>
+
+            <a href="dashboard.html" class="btn btn-light">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+        </div>
+
+    </nav>
+
+    <div class="container py-5">
+
+        <!-- Profile Header -->
+
+        <div class="card shadow-lg border-0 rounded-4 mb-4">
+
+            <div class="card-body text-center py-5">
+
+                <div class="profile-avatar mx-auto mb-3">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+                <h2 id="name">
+
+                    Loading...
+
+                </h2>
+
+                <h5 id="occupation" class="text-primary">
+
+                    -
+
+                </h5>
+
+                <p id="email" class="text-muted mb-2">
+
+                    -
+
+                </p>
+
+                <span class="badge bg-success px-3 py-2">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Verified User
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- Statistics -->
+
+        <div class="row g-4 mb-4">
+
+            <div class="col-md-3">
+
+                <div class="card text-center shadow border-0 rounded-4">
+
+                    <div class="card-body">
+
+                        <i class="fa-solid fa-clock-rotate-left fa-2x text-primary mb-3"></i>
+
+                        <h3 id="searchCount">
+
+                            0
+
+                        </h3>
+
+                        <p class="text-muted">
+
+                            Previous Searches
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="card text-center shadow border-0 rounded-4">
+
+                    <div class="card-body">
+
+                        <i class="fa-solid fa-map-location-dot fa-2x text-success mb-3"></i>
+
+                        <h5 id="state">
+
+                            -
+
+                        </h5>
+
+                        <p class="text-muted">
+
+                            State
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="card text-center shadow border-0 rounded-4">
+
+                    <div class="card-body">
+
+                        <i class="fa-solid fa-indian-rupee-sign fa-2x text-warning mb-3"></i>
+
+                        <h5 id="income">
+
+                            -
+
+                        </h5>
+
+                        <p class="text-muted">
+
+                            Annual Income
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="card text-center shadow border-0 rounded-4">
+
+                    <div class="card-body">
+
+                        <i class="fa-solid fa-graduation-cap fa-2x text-danger mb-3"></i>
+
+                        <h5 id="education">
+
+                            -
+
+                        </h5>
+
+                        <p class="text-muted">
+
+                            Education
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Personal Information -->
+
+        <div class="card shadow border-0 rounded-4 mb-4">
+
+            <div class="card-header bg-primary text-white">
+
+                <h4>
+
+                    <i class="fa-solid fa-address-card"></i>
+
+                    Personal Information
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-4">
+
+                        <strong>
+
+                            <i class="fa-solid fa-user"></i>
+
+                            Name
+
+                        </strong>
+
+                        <p id="nameInfo"></p>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <strong>
+
+                            <i class="fa-solid fa-cake-candles"></i>
+
+                            Age
+
+                        </strong>
+
+                        <p id="age"></p>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <strong>
+
+                            <i class="fa-solid fa-venus-mars"></i>
+
+                            Gender
+
+                        </strong>
+
+                        <p id="gender"></p>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <strong>
+
+                            <i class="fa-solid fa-briefcase"></i>
+
+                            Occupation
+
+                        </strong>
+
+                        <p id="occupationInfo"></p>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <strong>
+
+                            <i class="fa-solid fa-layer-group"></i>
+
+                            Category
+
+                        </strong>
+
+                        <p id="category"></p>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <strong>
+
+                            <i class="fa-solid fa-wheelchair"></i>
+
+                            Disability
+
+                        </strong>
+
+                        <p id="disability"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- AI Assistant -->
+
+        <div class="card shadow border-0 rounded-4 mb-4">
+
+            <div class="card-header bg-success text-white">
+
+                <h4>
+
+                    🤖 AI Assistant
+
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+                <h5>
+
+                    Hello,
+
+                    <span id="assistantName">
+
+                        User
+
+                    </span>
+
+                    👋
+
+                </h5>
+
+                <p>
+
+                    Welcome back to SchemeWise AI.
+
+                </p>
+
+                <p>
+
+                    You have performed
+
+                    <strong id="assistantSearchCount">
+
+                        0
+
+                    </strong>
+
+                    eligibility checks.
+
+                </p>
+
+                <p>
+
+                    Visit the Eligibility section to discover more government schemes tailored to your profile.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Quick Actions -->
+
+        <div class="card shadow border-0 rounded-4">
+
+            <div class="card-header bg-dark text-white">
+
+                <h4>
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    Quick Actions
+
+                </h4>
+
+            </div>
+
+            <div class="card-body text-center">
+
+                <a href="eligibility.html" class="btn btn-primary m-2">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Check Eligibility
+
+                </a>
+
+                <a href="dashboard.html" class="btn btn-success m-2">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Dashboard
+
+                </a>
+
+                <button id="logout" class="btn btn-danger m-2">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="js/profile.js"></script>
+
+</body>
+
+</html>

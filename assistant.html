@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SchemeWise AI Assistant</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/Style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Floating Assistant -->
+
+    <div id="assistantContainer">
+
+        <!-- Assistant Header -->
+
+        <div class="assistant-header">
+
+            <div class="assistant-info">
+
+                <div class="assistant-avatar">
+
+                    🤖
+
+                </div>
+
+                <div>
+
+                    <h5 id="assistantName">
+
+                        SchemeWise AI
+
+                    </h5>
+
+                    <small id="assistantStatus">
+
+                        Online • Ready to Help
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            <button id="closeAssistant">
+
+                <i class="fa-solid fa-minus"></i>
+
+            </button>
+
+        </div>
+
+        <!-- Welcome -->
+
+        <div class="assistant-welcome">
+
+            <h3>
+
+                👋 Hello
+
+                <span id="userName">
+
+                    User
+
+                </span>
+
+            </h3>
+
+            <p>
+
+                I am your Government Scheme Assistant.
+
+                I can help you with
+
+                scholarships,
+
+                loans,
+
+                farmer schemes,
+
+                women schemes,
+
+                startup support,
+
+                eligibility,
+
+                documents,
+
+                and applications.
+
+            </p>
+
+        </div>
+
+        <!-- Suggested Questions -->
+
+        <div class="assistant-suggestions">
+
+            <button class="suggestion">
+
+                🎓 Scholarship
+
+            </button>
+
+            <button class="suggestion">
+
+                👩 Women Schemes
+
+            </button>
+
+            <button class="suggestion">
+
+                💼 Business Loan
+
+            </button>
+
+            <button class="suggestion">
+
+                🌾 Farmer Schemes
+
+            </button>
+
+            <button class="suggestion">
+
+                📑 Required Documents
+
+            </button>
+
+            <button class="suggestion">
+
+                🏛 PMEGP
+
+            </button>
+
+        </div>
+
+        <!-- Conversation -->
+
+        <div id="chatBox">
+
+            <div class="assistant-message">
+
+                👋 Welcome to SchemeWise AI.
+
+                What would you like to know today?
+
+            </div>
+
+        </div>
+
+        <!-- Listening Animation -->
+
+        <div id="voiceAnimation">
+
+            <div class="circle c1"></div>
+
+            <div class="circle c2"></div>
+
+            <div class="circle c3"></div>
+
+            <div class="circle c4"></div>
+
+        </div>
+
+        <!-- Input -->
+
+        <div class="assistant-input">
+
+            <input
+                type="text"
+                id="userInput"
+                placeholder="Ask anything about Government Schemes...">
+
+            <button id="sendBtn">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </button>
+
+            <button id="micBtn">
+
+                <i class="fa-solid fa-microphone"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Floating Open Button -->
+
+    <button id="assistantFloatingBtn">
+
+        🤖
+
+    </button>
+
+    <script src="js/assistant.js"></script>
+
+</body>
+
+</html>

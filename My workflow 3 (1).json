@@ -1,0 +1,243 @@
+{
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        352,
+        -144
+      ],
+      "id": "1cbe7437-b9d3-4efe-9100-6bf6e689ddeb",
+      "name": "When chat message received",
+      "webhookId": "0d0c2f8f-f28a-4f3c-b2ce-ca51c29d98ef"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        432,
+        64
+      ],
+      "id": "258ddaf6-ac9c-4bce-90c5-feeae74a882b",
+      "name": "Google Gemini Chat Model",
+      "credentials": {},
+      "notes": "const maxRetries = 5;\n\nfor (let i = 0; i < maxRetries; i++) {\n  try {\n    const result = await model.generateContent(prompt);\n    return result;\n  } catch (err) {\n    if (err.status === 503) {\n      await new Promise(r => setTimeout(r, Math.pow(2, i) * 1000));\n      continue;\n    }\n    throw err;\n  }\n}"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are SchemeWise AI, an intelligent Government Scheme Eligibility Assistant.\n\nYou have access to conversation memory.\n\nIMPORTANT RULES:\n\n1. Always remember information already provided by the user.\n2. Never ask again for information already available in memory.\n3. If some details are missing, ask ONLY for the missing fields.\n4. After collecting all required information, use the Google Sheets tool to find matching schemes.\n5. Show:\n   - Eligible schemes\n   - Benefits\n   - Eligibility\n   - Required documents\n   - Official application link\n\nRequired information:\n- Name\n- Age\n- State\n- Occupation\n- Annual Income\n- Education\n\nWhen you use the Government Schemes Database tool:\n\n- Read the Official Link column from the Google Sheet.\n- Display the complete URL exactly as it appears.\n- Do not replace it with \"Apply Here\".\n- If multiple schemes are found, list each scheme in a separate section.\n- Format the response using Markdown.\n\nExample:\nIf the user already gave Name, Age, State, Occupation and Education and later sends only \"100000\", understand that this is Annual Income and continue without asking for the previous details again."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        560,
+        -128
+      ],
+      "id": "82cf378b-95d6-4023-b190-0219b5a89e89",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1mO2CqGkqQNxlHJJktcDhb51sB81QXeG3SRniYB9lg4Y",
+          "mode": "list",
+          "cachedResultName": "Government Schemes Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mO2CqGkqQNxlHJJktcDhb51sB81QXeG3SRniYB9lg4Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mO2CqGkqQNxlHJJktcDhb51sB81QXeG3SRniYB9lg4Y/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        544,
+        160
+      ],
+      "id": "38602861-23b4-43e2-8795-3ccca5b0bdca",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "skF4oSmEyxuRei4n",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Search the Government Schemes Google Sheet.\n\nUse this tool ONLY after the user has provided:\n- Name\n- Age\n- State\n- Occupation\n- Annual Income\n- Education\n\nSearch the sheet for matching government schemes.\n\nReturn:\n- Scheme Name\n- Eligibility\n- Benefits\n- Required Documents\n- Official Link\n\nAlways use this tool before answering.",
+        "documentId": {
+          "__rl": true,
+          "value": "1mO2CqGkqQNxlHJJktcDhb51sB81QXeG3SRniYB9lg4Y",
+          "mode": "list",
+          "cachedResultName": "Government Schemes Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mO2CqGkqQNxlHJJktcDhb51sB81QXeG3SRniYB9lg4Y/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1mO2CqGkqQNxlHJJktcDhb51sB81QXeG3SRniYB9lg4Y/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        688,
+        32
+      ],
+      "id": "85930fcc-a72a-43b0-a635-6a94107cd9b6",
+      "name": "Get row(s) in sheet in Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "skF4oSmEyxuRei4n",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        816,
+        32
+      ],
+      "id": "b098c9f5-725d-44cb-810a-63e1196df70a",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        624,
+        272
+      ],
+      "id": "95739359-b870-42b9-969f-9eb3fa2d3ec2",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "YPGRtWkqBndRg3o9",
+          "name": "Google Gemini(PaLM) Api account 5"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        672,
+        176
+      ],
+      "id": "446e1f81-6bc7-4dba-bf51-a3861f778173",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-20b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        720,
+        288
+      ],
+      "id": "c4d63d01-eb82-496a-b466-bbeabe24e48b",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "Py7PMG7MSdvHF3H8",
+          "name": "Groq account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        []
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "21eecb10-f307-47a0-a730-febde166dcfb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "06bd214dd33fe207a71981ddbb6490b3bb5b448cf313f44e1a1d8f3cadb09fd3"
+  },
+  "id": "1O36JnQWmki2OZci",
+  "tags": []
+}
